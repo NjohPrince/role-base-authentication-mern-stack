@@ -1,6 +1,6 @@
 // user controlles
 
-const User = require("../models/userModel");
+const User = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 

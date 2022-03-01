@@ -32,7 +32,7 @@ const startServer = async () => {
 
 // middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 // cors
 if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));

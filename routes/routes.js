@@ -4,8 +4,17 @@ const router = express.Router();
 
 const userController = require("../controllers/UserController");
 
-router.post("/signup", userController.signup);
-router.post("/login", userController.login);
+const { userSignupValidator } = require("../validators/auth");
+const { runValidators } = require("../validators");
+
+router.post(
+  "/signup",
+  userSignupValidator,
+  runValidators,
+  userController.signup
+);
+
+router.post("/login", userSignupValidator, runValidators, userController.login);
 
 router.get(
   "/user/:userId",

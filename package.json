@@ -1,0 +1,20 @@
+{
+  "name": "role-base-authentication-mern-stack",
+  "version": "1.0.0",
+  "description": "Implementation of role based authentication using react.js, node.js mongodb and redux for state management",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NjohPrince/role-base-authentication-mern-stack.git"
+  },
+  "keywords": [],
+  "author": "Njoh Noh Prince Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NjohPrince/role-base-authentication-mern-stack/issues"
+  },
+  "homepage": "https://github.com/NjohPrince/role-base-authentication-mern-stack#readme"
+}

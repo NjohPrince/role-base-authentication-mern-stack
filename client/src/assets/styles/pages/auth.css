@@ -1,0 +1,67 @@
+.auth__container {
+  min-height: 100vh;
+}
+
+.auth__form {
+  width: 600px;
+  box-shadow: 0 0 10px 1px #f1f0f0;
+  -webkit-box-shadow: 0 0 10px 1px #f1f0f0;
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+
+.auth__form .auth__form__head h1 {
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+}
+
+.form__control {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.form__control .fas {
+  left: 1.2rem;
+  position: absolute;
+  font-size: 17px;
+  color: var(--blue-color);
+}
+
+.form__control,
+.form__control input {
+  width: 100%;
+}
+
+.form__control input {
+  padding: 0.8rem 3rem;
+  border-radius: 3px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 17px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: none;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+}
+
+.form__control input:focus-within,
+.form__control input:focus {
+  border-color: var(--blue-color);
+}
+
+.form__control a {
+  color: var(--blue-color);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.form__control button {
+  padding: 0.7rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-size: 17px;
+  color: #fff;
+  background: var(--blue-color);
+}

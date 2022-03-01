@@ -1,8 +1,8 @@
 const { check } = require("express-validator");
 
 exports.userSignupValidator = [
-  check("fullname").not().isEmpty().withMessage("Your name is required."),
-  check("fullname")
+  check("name").not().isEmpty().withMessage("Your name is required."),
+  check("name")
     .isLength({ min: 3 })
     .withMessage("Name must be more than 2 characters long."),
   check("email").isEmail().withMessage("Please enter a valid email."),

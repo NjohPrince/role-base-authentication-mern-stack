@@ -51,3 +51,33 @@ exports.signup = async (req, res, next) => {
     next(error);
   }
 };
+
+// login controller
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    // verifying if a user exists with given email
+    const user = await User.findOne({ email });
+    if (!user) return next(new Error(`No user with email ${email} found!`));
+
+    // verifying the password provided is the same as the encrypted password saved in the database
+    const validPassword = await validatePassword(password, user.password);
+    if (!validPassword) return next(new Error("Incorrect Password!"));
+
+    // generating a new access token for the user
+    const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    // update the token upon new login
+    await User.findByIdAndUpdate(user._id, { accessToken });
+
+    res.status(200).json({
+      data: { fullname: user.fullname, email: user.email, role: user.role },
+      accessToken,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

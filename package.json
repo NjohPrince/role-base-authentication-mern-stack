@@ -4,6 +4,7 @@
   "description": "Implementation of role based authentication using react.js, node.js mongodb and redux for state management",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node index.js"
   },
   "repository": {
@@ -24,6 +25,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.2.4",
+    "nodemon": "^2.0.15"
   }
 }

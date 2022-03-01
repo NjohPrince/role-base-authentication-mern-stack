@@ -8,7 +8,9 @@ const { roles } = require("../roles/roles");
 
 // encrypting password during account creation
 async function hashPassword(password) {
-  return await bcrypt.hash(password, Math.round(new Date().valueOf() * Math.random() + ''));
+  const saltRounds = Math.round(new Date().valueOf() * Math.random() + '');
+  const salt = await bcrypt.genSalt(saltRounds);
+  return await bcrypt.hash(password, salt);
 }
 
 // compare password for match during login
@@ -21,13 +23,13 @@ exports.signup = async (req, res, next) => {
   try {
     // extracting necessary data from the request's body
     const { fullname, email, password, role } = req.body;
-    const hashedPassword = await hashPassword(password);
+    const hashedPass = await hashPassword(password);
 
     // creating an instance of the new user using the mongoose schema
     const newUser = new User({
       fullname,
       email,
-      password: hashedPassword,
+      password: hashedPass,
       role: role || "USER_ADMIN",
     });
 

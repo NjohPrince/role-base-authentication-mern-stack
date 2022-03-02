@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 
@@ -21,6 +22,7 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
   const [showMobile, setShowMobile] = useState(false);
 
   let innerWidth = window.innerWidth;
+  const location = useLocation();
 
   const windowResizeListener = useCallback(() => {
     if (innerWidth <= 820) {
@@ -52,12 +54,37 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
   };
 
   const dispatch = useDispatch();
+
+  const [token, setToken] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    axios
+      .post(`${baseURL}/get-token`)
+      .then((response) => {
+        console.log(response.data);
+        setToken(response.data);
+      })
+      .catch((error) => {
+        console.log(error?.error);
+      });
+  }, [location]);
+
+  useEffect(() => {
+    if(token !== null && token !== "") {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [token]);
+
   // logout
   const handleLogout = (e) => {
     e.preventDefault();
     axios
       .post(`${baseURL}/logout`)
       .then((response) => {
+        window.location.reload();
         dispatch(setAlert(response.data.message, "success"));
       })
       .catch((error) => {
@@ -86,8 +113,7 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
             : "menu flex"
         } a-j-center`}
       >
-        {NavLinks &&
-          containMenuItems &&
+        {NavLinks && !isAuthenticated &&
           NavLinks.length > 0 &&
           NavLinks.map((link, index) => {
             return (
@@ -120,15 +146,15 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
               </li>
             );
           })}
-        {!containMenuItems && (
+        {!containMenuItems && isAuthenticated && (
           <div className="profile__center relative">
             <div className="avatar flex a-j-center">
               <img src={Avatar} alt="user" />
             </div>
             <div className="profile__control absolute">
               <div>
-                <Link to="/">
-                  <i aria-hidden="true" className="fas fa-home"></i> Home Page
+                <Link to="/dashboard">
+                  <i aria-hidden="true" className="fas fa-home"></i> Dashboard
                 </Link>
               </div>
               <button onClick={(e) => handleLogout(e)}>

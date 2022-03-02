@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router";
-import axios from "axios";
-import { useLocation } from "react-router";
 
 // alert / notifications
 import Alert from "./partials/alert/Alert.js";
@@ -14,24 +12,7 @@ import Login from "./pages/Login.page.jsx";
 import Register from "./pages/Register.page.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 
-// baseURL - server
-const baseURL = process.env.REACT_APP_API_KEY;
-
 const App = () => {
-  // const [token, setToken] = useState("");
-  // const location = useLocation();
-  
-  // useEffect(() => {
-  //   axios
-  //     .post(`${baseURL}/get-token`)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setToken(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error?.error);
-  //     });
-  // }, [location]);
 
   return (
     <div className="app">

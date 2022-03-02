@@ -1,35 +1,68 @@
 {
-  "name": "role-base-authentication-mern-stack",
-  "version": "1.0.0",
-  "description": "Implementation of role based authentication using react.js, node.js mongodb and redux for state management",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NjohPrince/role-base-authentication-mern-stack.git"
-  },
-  "keywords": [],
-  "author": "Njoh Noh Prince Junior",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NjohPrince/role-base-authentication-mern-stack/issues"
-  },
-  "homepage": "https://github.com/NjohPrince/role-base-authentication-mern-stack#readme",
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
     "accesscontrol": "^2.2.1",
     "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
     "nodemailer": "^6.7.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "axios": "^0.26.0",
+    "dotenv": "^16.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.2.2",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
+    "uuid": "^8.3.2",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "npm run build && node index.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NjohPrince/role-base-authentication-mern-stack.git"
+  },
+  "keywords": ["nodemailer", "user-authentication", "reactjs", "nodejs"],
+  "author": "Njoh Noh Prince Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NjohPrince/role-base-authentication-mern-stack/issues"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,11 +1,12 @@
 require("dotenv").config();
-
+const path = require('path');
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const User = require("./models/UserModel");
 const routes = require("./routes/routes");
@@ -33,16 +34,19 @@ const startServer = async () => {
 // middlewares
 app.use(morgan("dev"));
 app.use(bodyParser.json());
+app.use(cookieParser());
 // cors
 if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
 }
 
-// default route - testing
-app.get("/", (req, res) => {
-  res
-    .send({ message: "Role Based Authentication System - MERN Stack" })
-    .status(200);
+const publicPath = path.join(__dirname, 'build');
+app.use(express.static(publicPath));
+app.use('/static', express.static(path.join(__dirname, "build/static")));
+app.use('/manifest.json', express.static(path.join(__dirname, "build", "manifest.json")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.use(async (req, res, next) => {
@@ -67,6 +71,6 @@ app.use(async (req, res, next) => {
 
 app.use("/api/v1", routes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 startServer();

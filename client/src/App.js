@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router";
 
+// alert / notifications
+import Alert from "./partials/alert/Alert.js";
+
 // pages import
 import Home from "./pages/Home.page.jsx";
 import Error from "./pages/Error.page.jsx";
@@ -13,6 +16,7 @@ const App = () => {
   return (
     <div className="app">
       <Router>
+        <Alert />
         <Routes>
           {/** WELCOME PAGE - HOME */}
           <Route exact path="/" element={<Home />} />

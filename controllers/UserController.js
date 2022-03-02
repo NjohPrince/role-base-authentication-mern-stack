@@ -2,59 +2,42 @@
 
 const User = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 
 const { roles } = require("../roles/roles");
 
-// encrypting password during account creation
-async function hashPassword(password) {
-  const saltRounds = Math.round(new Date().valueOf() * Math.random() + '');
-  const salt = await bcrypt.genSalt(saltRounds);
-  return await bcrypt.hash(password, salt);
-}
-
-// compare password for match during login
-async function validatePassword(plainPassword, hashedPassword) {
-  return await bcrypt.compare(plainPassword, hashedPassword);
-}
-
 // signup controller
-exports.signup = async (req, res, next) => {
-    const { name, email, password, role } = req.body;
+exports.signup = async (req, res) => {
+  const { name, email, password, role } = req.body;
 
-    console.log("Hello");
+  const user = await User.findOne({ email });
+  if (user) return res.status(400).json({ error: "Email already in use." });
 
-    const user = await User.findOne({ email });
-    if (user) return next(new Error(`Email already in use by another account!`));
+  // creating an instance of the new user using the mongoose schema
+  const newUser = new User({
+    name,
+    email,
+    password,
+    role: role || "SUPER_ADMIN",
+  });
 
-    const hashedPass = await hashPassword(password);
+  // generating access token for user
+  const accessToken = jwt.sign(
+    { userId: newUser._id },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  );
 
-    // creating an instance of the new user using the mongoose schema
-    const newUser = new User({
-      name,
-      email,
-      password: hashedPass,
-      role: role || "SUPER_ADMIN",
-    });
-
-    // generating access token for user
-    const accessToken = jwt.sign(
-      { userId: newUser._id },
-      process.env.JWT_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
-
-    // assigning token to the new user
-    newUser.accessToken = accessToken;
-    await newUser.save();
-    res
-      .json({
-        data: newUser,
-        accessToken,
-      })
-      .status(201);
+  // assigning token to the new user
+  newUser.accessToken = accessToken;
+  await newUser.save();
+  res
+    .json({
+      data: { id: newUser._id, name: newUser.name, email: newUser.email, role: newUser.role },
+      accessToken,
+    })
+    .status(201);
 };
 
 // login controller
@@ -66,9 +49,11 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ email });
     if (!user) return next(new Error(`No user with email ${email} found!`));
 
-    // verifying the password provided is the same as the encrypted password saved in the database
-    const validPassword = await validatePassword(password, user.password);
-    if (!validPassword) return next(new Error("Incorrect Password!"));
+    if (!user.authenticate(password)) {
+      return res.status(400).json({
+        error: `Incorrect password.`,
+      });
+    }
 
     // generating a new access token for the user
     const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
@@ -79,7 +64,7 @@ exports.login = async (req, res, next) => {
     await User.findByIdAndUpdate(user._id, { accessToken });
 
     res.status(200).json({
-      data: { name: user.name, email: user.email, role: user.role },
+      data: { id: user._id, name: user.name, email: user.email, role: user.role },
       accessToken,
     });
   } catch (error) {

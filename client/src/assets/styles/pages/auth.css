@@ -65,3 +65,9 @@
   color: #fff;
   background: var(--blue-color);
 }
+
+@media screen and (max-width: 650px) {
+  .auth__form {
+    width: 100%;
+  }
+}

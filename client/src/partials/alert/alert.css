@@ -1,0 +1,46 @@
+.alert {
+  width: fit-content;
+  font-size: 1rem;
+  color: #fff;
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  margin-bottom: 1rem;
+  animation: fade-left 0.5s linear alternate;
+  -webkit-animation: fade-left 0.5s linear alternate;
+}
+
+.alert--none {
+  display: none;
+  animation: fade-left 0.1s linear alternate;
+  -webkit-animation: fade-left 0.1s linear alternate;
+}
+
+@keyframes fade-left {
+  0% {
+    right: 0rem;
+  }
+  100% {
+    right: 1.5rem;
+  }
+}
+
+@-webkit-keyframes fade-left {
+  0% {
+    right: 0rem;
+  }
+  100% {
+    right: 1.5rem;
+  }
+}
+
+.alert--success {
+  background-color: #28a745;
+}
+
+.alert--error {
+  background-color: #dc3545;
+}

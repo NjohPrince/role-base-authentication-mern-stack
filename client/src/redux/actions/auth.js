@@ -1,7 +1,11 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 
+// action types
 import { ActionTypes } from "../constants/ActionTypes";
+
+// baseURL - API Route
+const baseURL = process.env.REACT_APP_API_KEY;
 
 export const login = (email, password) => async (dispatch) => {
   const config = {
@@ -10,34 +14,35 @@ export const login = (email, password) => async (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({ username, password });
+  const body = JSON.stringify({ email, password });
 
   try {
     dispatch({
       type: ActionTypes.LOGIN_REQUEST,
     });
 
-    const response = await axios.post(
-      ``,
-      body,
-      config
-    );
+    const response = await axios.post(`${baseURL}/login`, body, config);
     dispatch({
       type: ActionTypes.LOGIN_SUCCESS,
       payload: response.data,
     });
 
-    axiosInstance.defaults.headers[""] =
-      "Bearer " + response.data.access_token;
-    axiosInstances.defaults.headers[""] =
-      "Bearer " + response.data.access_token;
+    console.log(response.data);
 
-    dispatch(setAlert("Authenticated Successfully", "success"));
+    axios.defaults.headers["x-access-token"] = response.data.accessToken;
+    axios.defaults.headers["x-access-token"] = response.data.accessToken;
+
+    dispatch(setAlert("Authentication success!", "success"));
   } catch (error) {
-    console.log(error.response.data);
+    if(error.response.data) {
+      dispatch(setAlert(error.response.data.error, "error"));
+    } 
+    if(error.message) {
+      dispatch(setAlert(error.message, "error"));
+    }
     dispatch({
       type: ActionTypes.LOGIN_FAILURE,
-      payload: error.response.data,
+      payload: error.response?.data?.error,
     });
   }
 };
@@ -61,16 +66,21 @@ export const signup = (name, email, password, role) => async (dispatch) => {
       type: ActionTypes.SIGNUP_REQUEST,
     });
 
+    const res = await axios.post(`${baseURL}/signup`, body, config);
     dispatch({
       type: ActionTypes.SIGNUP_SUCCESS,
       payload: res.data,
     });
 
-    dispatch(login(email, password));
-  } catch (err) {
+    axios.defaults.headers["x-access-token"] = res.data.accessToken;
+    axios.defaults.headers["x-access-token"] = res.data.accessToken;
+
+    // console.log(res.data);
+  } catch (error) {
+    // console.log(error.response?.data?.error);
     dispatch({
       type: ActionTypes.SIGNUP_FAILURE,
-      payload: err.response,
+      payload: error.response?.data?.error,
     });
   }
 };

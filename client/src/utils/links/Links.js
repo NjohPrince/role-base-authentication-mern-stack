@@ -17,4 +17,12 @@ export const NavLinks = [
       },
     ],
   },
+  {
+    name: "Login",
+    path: "/auth/login",
+  },
+  {
+    name: "Register",
+    path: "/auth/register",
+  },
 ];

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap');
+
 * {
   margin: 0;
   font-family: 'Poppins', sans-serif,
@@ -11,6 +13,7 @@
   user-select: none;
   -webkit-user-select: none;
   line-height: 1.2;
+  font-weight: normal;
 }
 
 ul {
@@ -97,6 +100,11 @@ body {
 .flex {
   display: flex;
   display: ms-flexbox;
+}
+
+.flex-column {
+  flex-direction: column;
+  -ms-flex-direction: column;
 }
 
 .grid {

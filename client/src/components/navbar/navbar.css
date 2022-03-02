@@ -1,5 +1,5 @@
 .navbar {
-    padding: 1.5rem 6vw;
+    padding: 2rem 6vw;
     position: fixed;
     width: 100%;
     box-shadow: var(--box-shadow);
@@ -11,6 +11,7 @@
     font-size: 28px;
     color: var(--blue-color);
     font-weight: 700;
+    font-family: 'Petit Formal Script', cursive;
 }
 
 .navbar .logo button {

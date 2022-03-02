@@ -1,0 +1,53 @@
+.home__page {
+    min-height: 100vh;
+    padding: 2rem 6vw;
+}
+
+.home__page .headline h1 {
+    font-size: 65px;
+    color: #000;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.home__page h3 {
+    width: calc(60vw);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.home__page .call__to__action button {
+    padding: 1rem 2rem;
+    background: var(--blue-color);
+    color: #fff;
+    font-size: 17px;
+    border-radius: 4px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    animation: bubble-up 1s linear infinite alternate-reverse;
+    -webkit-animation: bubble-up 1s linear infinite alternate-reverse;
+}
+
+@keyframes bubble-up {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+    25% {
+        transform: scale(1.13);
+        -webkit-transform: scale(1.13);
+    }
+    50% {
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+    }
+    75% {
+        transform: scale(1.13);
+        -webkit-transform: scale(1.13);
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+}

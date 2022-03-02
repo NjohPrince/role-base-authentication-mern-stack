@@ -8,6 +8,9 @@ import "../assets/styles/pages/auth.css";
 // redux - app state components import
 import { signup } from "../redux/actions/auth";
 
+// alert
+import { setAlert } from "../redux/actions/alert";
+
 const Register = ({
   dashboardView,
   buttonText,
@@ -42,8 +45,12 @@ const Register = ({
 
   const submitForm = (e) => {
     e.preventDefault();
-    
-    dispatch(signup(name, email, password, role));
+
+    if (confirmPassword === password) {
+      dispatch(signup(name, email, password, role));
+    } else {
+      dispatch(setAlert("Passwords mismatch", "error"));
+    }
   };
 
   return (
@@ -117,7 +124,14 @@ const Register = ({
               <i className="fas fa-lock" aria-hidden="true"></i>
             </div>
             <div className="form__control flex a-j-space-between">
-              <button type="submit">
+              <button
+                disabled={loading}
+                style={{
+                  opacity: loading ? "0.5" : "1",
+                  cursor: loading ? "not-allowed" : "pointer",
+                }}
+                type="submit"
+              >
                 {buttonText ? buttonText : "Register"}
               </button>
               {!dashboardView && (

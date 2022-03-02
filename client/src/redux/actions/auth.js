@@ -37,9 +37,6 @@ export const login = (email, password) => async (dispatch) => {
     if(error.response.data) {
       dispatch(setAlert(error.response.data.error, "error"));
     } 
-    if(error.message) {
-      dispatch(setAlert(error.message, "error"));
-    }
     dispatch({
       type: ActionTypes.LOGIN_FAILURE,
       payload: error.response?.data?.error,
@@ -77,7 +74,9 @@ export const signup = (name, email, password, role) => async (dispatch) => {
 
     // console.log(res.data);
   } catch (error) {
-    // console.log(error.response?.data?.error);
+    if(error.response.data) {
+      dispatch(setAlert(error.response.data.error, "error"));
+    }
     dispatch({
       type: ActionTypes.SIGNUP_FAILURE,
       payload: error.response?.data?.error,

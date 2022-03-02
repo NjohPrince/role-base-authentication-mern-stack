@@ -13,6 +13,7 @@ import Sidebar from "../components/sidebar/Sidebar.jsx";
 
 // dashboard partials
 import AddUser from "../partials/adduser/AddUser.jsx";
+import ViewUsers from "../partials/viewusers/ViewUsers.jsx";
 
 const Dashboard = () => {
   const [updatedDate, setUpdatedDate] = useState(new Date());
@@ -111,6 +112,18 @@ const Dashboard = () => {
                 selectedTab={selectedTab}
               />
             )}
+            {selectedTab === "profilesettings" && (
+              <AddUser
+                title="Update Profile Info"
+                buttonText="Confirm Update"
+                selectedTab={selectedTab}
+              />
+            )}
+            {
+              selectedTab === "viewusers" && (
+                <ViewUsers avatar={Avatar} />
+              )
+            }
           </div>
         </div>
       </div>

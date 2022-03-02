@@ -8,9 +8,12 @@ const Register = ({
   buttonText,
   title,
   actionToBePerformed,
+  selectedTab,
 }) => {
   return (
-    <div className={`auth__container ${dashboardView ? "" : "flex a-j-center"}`}>
+    <div
+      className={`auth__container ${dashboardView ? "" : "flex a-j-center"}`}
+    >
       <div className="auth__form__wrapper">
         <div className="form__center">
           <form method="POST" className="auth__form">
@@ -25,12 +28,18 @@ const Register = ({
               <input type="password" placeholder="Email" />
               <i className="fas fa-envelope" aria-hidden="true"></i>
             </div>
+            {selectedTab === "profilesettings" && (
+              <div className="form__control relative flex">
+                <input type="password" placeholder="Old Password" />
+                <i className="fas fa-lock" aria-hidden="true"></i>
+              </div>
+            )}
             <div className="form__control relative flex">
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder={`${selectedTab === "profilesettings" ? "New Password" : "Password"}`} />
               <i className="fas fa-lock" aria-hidden="true"></i>
             </div>
             <div className="form__control relative flex">
-              <input type="password" placeholder="Confirm Password" />
+              <input type="password" placeholder={`${selectedTab === "profilesettings" ? "Confirm New Password" : "Confirm Password"}`} />
               <i className="fas fa-lock" aria-hidden="true"></i>
             </div>
             <div className="form__control flex a-j-space-between">

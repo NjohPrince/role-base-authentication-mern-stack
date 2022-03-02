@@ -38,6 +38,7 @@ const AddUser = ({ buttonText, title, selectedTab }) => {
         buttonText={buttonText}
         title={title}
         actionToBePerformed={actionsDefinition[actionIndex].action}
+        selectedTab={selectedTab}
       />
     </div>
   );

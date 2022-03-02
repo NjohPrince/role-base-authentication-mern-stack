@@ -13,7 +13,7 @@ const Home = () => {
       <Navbar />
       <div className="home__page flex flex-column a-j-center">
         <div className="headline">
-          <h1>Manage Users With Ease</h1>
+          <h1>Bring All Your Employees Together</h1>
         </div>
         <div className="tagline">
           <h3>

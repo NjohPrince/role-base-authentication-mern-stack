@@ -42,7 +42,7 @@ const ViewUsers = ({ avatar }) => {
                   <h4>{user.email}</h4>
                 </div>
                 <div className="actions">
-                  <button>
+                  <button className="danger">
                     <i aria-hidden="true" className="fas fa-trash"></i> Delete
                     Account
                   </button>
@@ -72,7 +72,7 @@ const ViewUsers = ({ avatar }) => {
                   <h4>{user.email}</h4>
                 </div>
                 <div className="actions">
-                  <button>
+                  <button className="danger">
                     <i aria-hidden="true" className="fas fa-trash"></i> Delete
                     Account
                   </button>
@@ -102,7 +102,7 @@ const ViewUsers = ({ avatar }) => {
                   <h4>{user.email}</h4>
                 </div>
                 <div className="actions">
-                  <button>
+                  <button className="danger">
                     <i aria-hidden="true" className="fas fa-trash"></i> Delete
                     Account
                   </button>

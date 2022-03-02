@@ -2,5 +2,50 @@
     font-size: 30px;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 2rem;
 }
 
+.view__users .subhead h3 {
+    color: var(--blue-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.user__card {
+    border-radius: 10px;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.user__card .user__image {
+    height: 220px;
+}
+
+.user__card .user__image img {
+    object-fit: cover;
+    -o-object-fit: cover;
+}
+
+.user__card .user__details,
+.user__card .actions {
+    padding: 0.8rem;
+}
+
+.user__card button {
+    padding: 0.8rem;
+    border-radius: 3px;
+    background: var(--blue-color);
+    color: #fff;
+    font-size: 12px;
+    margin: 0.2rem;
+}
+
+.user__card .danger {
+    background: var(--red-color) !important;
+}
+
+.user__card .user__details h3 {
+    color: var(--blue-color);
+    margin: 0.2rem 0;
+}

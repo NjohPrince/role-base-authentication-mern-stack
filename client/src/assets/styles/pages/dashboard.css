@@ -2,6 +2,7 @@
 .dashboard__view {
     padding-top: 7.5rem;
     left: 250px;
+    width: calc(100% - 270px);
 }
 
 .dashboard__view .profile h2 {

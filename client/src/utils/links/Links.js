@@ -4,15 +4,15 @@ export const NavLinks = [
     path: "/",
   },
   {
-    name: "Users",
+    name: "What We Offer",
     path: "/#",
     links: [
       {
-        name: "Vehicle Admins",
+        name: "Staff Management",
         path: "/",
       },
       {
-        name: "User Admins",
+        name: "Staff Profile Setup",
         path: "/",
       },
     ],

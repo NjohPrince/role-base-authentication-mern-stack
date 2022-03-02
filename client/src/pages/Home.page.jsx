@@ -10,7 +10,7 @@ import Navbar from "../components/navbar/Navbar.jsx";
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar containMenuItems={true} />
       <div className="home__page flex flex-column a-j-center">
         <div className="headline">
           <h1>Bring All Your Employees Together</h1>

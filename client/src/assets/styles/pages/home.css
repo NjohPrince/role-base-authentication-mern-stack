@@ -1,6 +1,9 @@
 .home__page {
     min-height: 100vh;
     padding: 2rem 6vw;
+    background: url("../../images/bg.PNG") no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 .home__page .headline h1 {

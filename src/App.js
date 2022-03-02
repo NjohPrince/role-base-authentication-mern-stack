@@ -18,20 +18,20 @@ import Dashboard from "./pages/Dashboard.jsx";
 const baseURL = process.env.REACT_APP_API_KEY;
 
 const App = () => {
-  const [token, setToken] = useState("");
-  const location = useLocation();
+  // const [token, setToken] = useState("");
+  // const location = useLocation();
   
-  useEffect(() => {
-    axios
-      .post(`${baseURL}/get-token`)
-      .then((response) => {
-        console.log(response.data);
-        setToken(response.data);
-      })
-      .catch((error) => {
-        console.log(error?.error);
-      });
-  }, [location]);
+  // useEffect(() => {
+  //   axios
+  //     .post(`${baseURL}/get-token`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setToken(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error?.error);
+  //     });
+  // }, [location]);
 
   return (
     <div className="app">

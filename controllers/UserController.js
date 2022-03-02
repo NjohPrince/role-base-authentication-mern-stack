@@ -20,14 +20,16 @@ async function validatePassword(plainPassword, hashedPassword) {
 
 // signup controller
 exports.signup = async (req, res, next) => {
-  try {
-    // extracting necessary data from the request's body
-    const { fullname, email, password, role } = req.body;
+    const { name, email, password, role } = req.body;
+
+    const user = await User.findOne({ email });
+    if (user) return next(new Error(`Email already in use by another account!`));
+
     const hashedPass = await hashPassword(password);
 
     // creating an instance of the new user using the mongoose schema
     const newUser = new User({
-      fullname,
+      name,
       email,
       password: hashedPass,
       role: role || "USER_ADMIN",
@@ -51,9 +53,6 @@ exports.signup = async (req, res, next) => {
         accessToken,
       })
       .status(201);
-  } catch (error) {
-    next(error);
-  }
 };
 
 // login controller

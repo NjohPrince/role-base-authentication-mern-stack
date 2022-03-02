@@ -1,0 +1,48 @@
+.sidebar {
+    width: 230px;
+    padding: 0.5rem;
+    padding-top: 6.4rem;
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+    overflow: auto;
+}
+
+.sidebar__item a {
+    display: flex;
+    display: flex;
+    padding: 1rem 0.8rem;
+    border-bottom: rgb(12, 36, 172);
+    color: #000;
+    box-shadow: 0 0 10px 1px rgba(219, 219, 219, 0.2);
+    padding: 0.8rem;
+    border-radius: 3px;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar__item a .fas {
+    margin-right: 0.8rem;
+}
+
+.sidebar__item a h4,
+.sidebar__item a .fas {
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+}
+
+.sidebar__item a:focus-within {
+    outline: none;
+}
+
+.sidebar__item a:hover h4,
+.sidebar__item a:focus-within h4,
+.sidebar__item a:hover .fas,
+.sidebar__item a:focus-within .fas {
+    color: var(--error-color);
+}

@@ -31,13 +31,8 @@ button {
 
 :root {
   --green-color: #48a363;
-  --blue-color: #0098B1;
-  --fa-color: #0098B1;
-  --color-primary: #3E474F;
-  --text-color: #383e42;
+  --blue-color: #136bdf;
   --error-color: #ca5e79;
-  --link-gray: #ADB6B9;
-  --bg-color: #ffffff;
   --box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 27px;
   --footer-gray: #F6F9FA;
 }

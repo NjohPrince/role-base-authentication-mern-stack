@@ -181,7 +181,7 @@ exports.allowIfLoggedin = async (req, res, next) => {
         error: "You need to be logged in to access this route",
       });
 
-    req.user = user;
+    res.json({ data: user }).status(200);
     next();
   } catch (error) {
     next(error);

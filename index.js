@@ -1,5 +1,5 @@
 require("dotenv").config();
-const path = require('path');
+const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -38,15 +38,20 @@ app.use(cookieParser());
 // cors
 if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+} else {
+  app.use(cors({ origin: `${process.env.HOSTED_URL}` }));
 }
 
-const publicPath = path.join(__dirname, 'build');
+const publicPath = path.join(__dirname, "build");
 app.use(express.static(publicPath));
-app.use('/static', express.static(path.join(__dirname, "build/static")));
-app.use('/manifest.json', express.static(path.join(__dirname, "build", "manifest.json")));
+app.use("/static", express.static(path.join(__dirname, "build/static")));
+app.use(
+  "/manifest.json",
+  express.static(path.join(__dirname, "build", "manifest.json"))
+);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
 });
 
 app.use(async (req, res, next) => {
@@ -70,6 +75,38 @@ app.use(async (req, res, next) => {
 });
 
 app.use("/api/v1", routes);
+
+app.post("/api/v1/store-token", (req, res) => {
+  const { token } = req.body;
+  if (token && token !== "") {
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      })
+      .status(200)
+      .json({ message: "Logged in successfully" });
+  } else {
+    res.status(404).json({ error: "No token obtained" });
+  }
+});
+
+app.get("/api/v1/get-jwt", (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) {
+    res
+      .status(403)
+      .json({ error: "Unauthorized" });
+  }
+  res.status(200).json({ token: token });
+});
+
+app.get("/api/v1/logout", (req, res) => {
+  return res
+    .clearCookie("accessToken")
+    .status(200)
+    .json({ message: "Successfully logged out, Please come back soon." });
+});
 
 const PORT = process.env.PORT || 3001;
 

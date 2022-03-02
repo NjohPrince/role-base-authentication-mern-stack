@@ -10,7 +10,7 @@ import Avatar from "../../assets/images/avatar.png";
 // utils import
 import { NavLinks } from "../../utils/links/Links.js";
 
-const Navbar = ({ containMenuItems }) => {
+const Navbar = ({ containMenuItems, adjustPadding }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [showMobile, setShowMobile] = useState(false);
 
@@ -55,6 +55,9 @@ const Navbar = ({ containMenuItems }) => {
     <nav
       role="navigation"
       className="flex a-j-space-between navbar"
+      style={{
+        padding: adjustPadding ? "2rem 1.6rem" : "2rem 6vw"
+      }}
     >
       <div className="logo flex a-j-center">
         <Link to="/">
@@ -69,7 +72,7 @@ const Navbar = ({ containMenuItems }) => {
             : "menu flex"
         } a-j-center`}
       >
-        {NavLinks && !containMenuItems &&
+        {NavLinks && containMenuItems &&
           NavLinks.length > 0 &&
           NavLinks.map((link, index) => {
             return (
@@ -102,15 +105,15 @@ const Navbar = ({ containMenuItems }) => {
               </li>
             );
           })}
-        {containMenuItems && (
+        {!containMenuItems && (
           <div className="profile__center relative">
-            <div className="avatar">
+            <div className="avatar flex a-j-center">
               <img src={Avatar} alt="user" />
             </div>
             <div className="profile__control absolute">
               <div>
-                <Link to="/dashboard?tab=0">
-                  <i aria-hidden="true" className="fas fa-home"></i> Dashboard
+                <Link to="/">
+                  <i aria-hidden="true" className="fas fa-home"></i> Home Page
                 </Link>
               </div>
               <button onClick={(e) => handleLogout(e)}>

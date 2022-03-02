@@ -6,7 +6,7 @@ import "./sidebar.css";
 
 const Sidebar = () => {
   return (
-    <div className="sidebar absolute">
+    <div className="sidebar">
       <div className="sidebar__item">
         <Link to="/dashboard">
           <i className="fas fa-user" aria-hidden="true"></i>

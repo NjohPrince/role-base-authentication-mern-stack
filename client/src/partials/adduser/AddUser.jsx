@@ -6,15 +6,18 @@ import "../../assets/styles/pages/auth.css";
 import Register from "../../pages/Register.page.jsx";
 
 const AddUser = ({ buttonText, title, selectedTab }) => {
-  console.log(selectedTab);
   const [actionIndex, setActionIndex] = useState(0);
 
-  const addUserAdmin = () => {
+  const addUserAdmin = (e) => {
+    e.preventDefault();
+
     console.log("Add user admin");
     setActionIndex(0);
   };
 
-  const addVehicleAdmin = () => {
+  const addVehicleAdmin = (e) => {
+    e.preventDefault();
+
     console.log("Add vehicle admin");
     setActionIndex(1);
   };
@@ -30,7 +33,12 @@ const AddUser = ({ buttonText, title, selectedTab }) => {
 
   return (
     <div className="add__user">
-      <Register dashboardView={true} buttonText={buttonText} title={title} actionToBePerformed={actionsDefinition[actionIndex]} />
+      <Register
+        dashboardView={true}
+        buttonText={buttonText}
+        title={title}
+        actionToBePerformed={actionsDefinition[actionIndex].action}
+      />
     </div>
   );
 };

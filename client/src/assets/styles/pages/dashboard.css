@@ -1,6 +1,6 @@
 
 .dashboard__view {
-    padding-top: 7.3rem;
+    padding-top: 7.5rem;
     left: 250px;
 }
 
@@ -12,6 +12,15 @@
 
 .dashboard__view .profile h3 {
     margin-bottom: 0.5rem;
+}
+
+.dashboard__view .image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 2rem;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
 }
 
 .dashboard__view .actual__profile .card {

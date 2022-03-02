@@ -9,9 +9,8 @@ const Register = ({
   title,
   actionToBePerformed,
 }) => {
-  console.log(actionToBePerformed);
   return (
-    <div className="auth__container flex a-j-center">
+    <div className={`auth__container ${dashboardView ? "" : "flex a-j-center"}`}>
       <div className="auth__form__wrapper">
         <div className="form__center">
           <form method="POST" className="auth__form">

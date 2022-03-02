@@ -5,6 +5,8 @@
     box-shadow: var(--box-shadow);
     z-index: 9999;
     background: #fff;
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
 }
 
 .navbar .logo h2 {
@@ -132,8 +134,8 @@
 }
 
 .profile__center .avatar {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     overflow: hidden;
     overflow: -moz-hidden-unscrollable;
@@ -155,9 +157,9 @@
 .profile__center button {
     cursor: pointer;
     border: transparent;
-    background: var(--green-color);
+    background: var(--blue-color);
     color: #fff;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.8rem;
     width: 100%;
     border-radius: 3px;
     font-size: 17px;

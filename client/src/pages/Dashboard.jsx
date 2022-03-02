@@ -4,6 +4,9 @@ import { useLocation } from "react-router";
 // styles import
 import "../assets/styles/pages/dashboard.css";
 
+// images import
+import Avatar from "../assets/images/avatar.png";
+
 // components import
 import Navbar from "../components/navbar/Navbar.jsx";
 import Sidebar from "../components/sidebar/Sidebar.jsx";
@@ -32,7 +35,9 @@ const Dashboard = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setSelectedTab(extractParams(location.search?.substring(1))?.current);
+    if (!extractParams(location.search?.substring(1))?.current)
+      setSelectedTab("dashboard");
+    else setSelectedTab(extractParams(location.search?.substring(1))?.current);
   }, [location]);
 
   useEffect(() => {
@@ -50,40 +55,47 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Navbar />
+      <Navbar adjustPadding={true} containMenuItems={false} />
       <div className="dashboard__content relative">
         <Sidebar />
         <div className="dashboard__view absolute">
-          <div className="profile">
-            <h2>{greetings}, Prince Junior</h2>
-            <h3>
-              Date:{" "}
-              {updatedDate.toLocaleString("default", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
-            </h3>
-            <h3>
-              Time:{" "}
-              {updatedDate.toLocaleString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-                second: "numeric",
-                hour12: true,
-              })}
-            </h3>
-          </div>
-          <div className="actual__profile grid gap-1 grid-3">
-            <div className="card">
-              <h3 className="text-center">Full Name</h3>
-              <h4 className="text-center">Njoh Noh Prince Junior</h4>
-            </div>
-            <div className="card">
-              <h3 className="text-center">Email</h3>
-              <h4 className="text-center">jufredprince@gmail.com</h4>
-            </div>
-          </div>
+          {selectedTab === "dashboard" && (
+            <>
+              <div className="profile">
+                <h2>{greetings}, Prince Junior</h2>
+                <h3>
+                  Date:{" "}
+                  {updatedDate.toLocaleString("default", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </h3>
+                <h3>
+                  Time:{" "}
+                  {updatedDate.toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    second: "numeric",
+                    hour12: true,
+                  })}
+                </h3>
+              </div>
+              <div className="image">
+                <img src={Avatar} alt="avatar" />
+              </div>
+              <div className="actual__profile grid gap-1 grid-3">
+                <div className="card">
+                  <h3 className="text-center">Full Name</h3>
+                  <h4 className="text-center">Njoh Noh Prince Junior</h4>
+                </div>
+                <div className="card">
+                  <h3 className="text-center">Email</h3>
+                  <h4 className="text-center">jufredprince@gmail.com</h4>
+                </div>
+              </div>
+            </>
+          )}
           <div className="dashboard__partials">
             {selectedTab === "adduseradmin" && (
               <AddUser

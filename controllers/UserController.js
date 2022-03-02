@@ -2,6 +2,7 @@
 
 const User = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
+const { sendMail } = require("../services/mail");
 
 const { roles } = require("../roles/roles");
 
@@ -32,12 +33,29 @@ exports.signup = async (req, res) => {
   // assigning token to the new user
   newUser.accessToken = accessToken;
   await newUser.save();
-  res
-    .json({
-      data: { id: newUser._id, name: newUser.name, email: newUser.email, role: newUser.role },
-      accessToken,
-    })
-    .status(201);
+
+  try {
+    await sendMail({
+      email: email,
+      password: password,
+      name: name,
+    });
+    res
+      .json({
+        data: {
+          id: newUser._id,
+          name: newUser.name,
+          email: newUser.email,
+          role: newUser.role,
+        },
+        accessToken,
+      })
+      .status(201);
+  } catch (error) {
+    return res
+      .json({ error: "Unable to sign up, Please try again later" })
+      .status(400);
+  }
 };
 
 // login controller
@@ -64,7 +82,12 @@ exports.login = async (req, res, next) => {
     await User.findByIdAndUpdate(user._id, { accessToken });
 
     res.status(200).json({
-      data: { id: user._id, name: user.name, email: user.email, role: user.role },
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
       accessToken,
     });
   } catch (error) {

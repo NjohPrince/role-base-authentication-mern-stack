@@ -1,5 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+
+import { setAlert } from "../../redux/actions/alert";
 
 // style import
 import "./navbar.css";
@@ -9,6 +13,8 @@ import Avatar from "../../assets/images/avatar.png";
 
 // utils import
 import { NavLinks } from "../../utils/links/Links.js";
+
+const baseURL = process.env.REACT_APP_API_KEY;
 
 const Navbar = ({ containMenuItems, adjustPadding }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -45,10 +51,18 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
     setShowMobile(!showMobile);
   };
 
+  const dispatch = useDispatch();
   // logout
   const handleLogout = (e) => {
     e.preventDefault();
-    console.log("Logout Pressed!");
+    axios
+      .post(`${baseURL}/logout`)
+      .then((response) => {
+        dispatch(setAlert(response.data.message, "success"));
+      })
+      .catch((error) => {
+        console.log(error?.error);
+      });
   };
 
   return (
@@ -56,7 +70,7 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
       role="navigation"
       className="flex a-j-space-between navbar"
       style={{
-        padding: adjustPadding ? "2rem 1.6rem" : "2rem 6vw"
+        padding: adjustPadding ? "2rem 1.6rem" : "2rem 6vw",
       }}
     >
       <div className="logo flex a-j-center">
@@ -72,7 +86,8 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
             : "menu flex"
         } a-j-center`}
       >
-        {NavLinks && containMenuItems &&
+        {NavLinks &&
+          containMenuItems &&
           NavLinks.length > 0 &&
           NavLinks.map((link, index) => {
             return (

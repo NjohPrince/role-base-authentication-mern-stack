@@ -91,8 +91,9 @@ app.post("/api/v1/store-token", (req, res) => {
   }
 });
 
-app.get("/api/v1/get-jwt", (req, res) => {
-  const token = req.cookies.access_token;
+app.post("/api/v1/get-token", (req, res) => {
+  const token = req.cookies.accessToken;
+  console.log(token);
   if (!token) {
     res
       .status(403)
@@ -101,7 +102,7 @@ app.get("/api/v1/get-jwt", (req, res) => {
   res.status(200).json({ token: token });
 });
 
-app.get("/api/v1/logout", (req, res) => {
+app.post("/api/v1/logout", (req, res) => {
   return res
     .clearCookie("accessToken")
     .status(200)

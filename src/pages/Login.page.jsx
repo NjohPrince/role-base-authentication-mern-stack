@@ -69,7 +69,16 @@ const Login = () => {
               </div>
             </div>
             <div className="form__control flex a-j-space-between">
-              <button type="submit">Login</button>
+              <button
+                disabled={loading}
+                style={{
+                  opacity: loading ? "0.5" : "1",
+                  cursor: loading ? "not-allowed" : "pointer",
+                }}
+                type="submit"
+              >
+                Login
+              </button>
               <div>
                 <Link to="/auth/register">Don't Have An Account?</Link>
               </div>

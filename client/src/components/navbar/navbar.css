@@ -1,0 +1,227 @@
+.navbar {
+    padding: 1.5rem 6vw;
+    position: fixed;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    z-index: 9999;
+    background: #fff;
+}
+
+.navbar .logo h2 {
+    font-size: 28px;
+    color: var(--blue-color);
+    font-weight: 700;
+}
+
+.navbar .logo button {
+    margin-right: 1rem;
+    background: transparent;
+    border: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.navbar .logo .fas {
+    font-size: 27px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+}
+
+.navbar .menu .menu__list {
+    margin-right: 1.2rem;
+}
+
+.navbar .menu .menu__list .fas {
+    margin-left: 0.5rem;
+    color: var(--dark-gray-color);
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+}
+
+.navbar .menu .menu__list .menu__link,
+.mobile__menu .menu__link {
+    color: var(--dark-gray-color);
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+}
+
+.navbar .menu .menu__list:hover > .menu__link,
+.mobile__menu .menu__list:hover > .menu__link,
+.mobile__menu .menu__list:focus-within > .menu__link
+.navbar .menu .menu__list:focus-within > .menu__link {
+    color: var(--blue-color);
+}
+
+.navbar .menu .menu__list:hover > .fas,
+.navbar .menu .menu__list:focus-within > .fas {
+    color: var(--blue-color);
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+}
+
+/** MOBILE MENU STYLES ****************************************/
+.mobile__menu {
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    top: 6rem;
+    padding: 0.5rem 0;
+    padding-top: 0;
+    z-index: 1;
+    width: 100%;
+    transform-origin: top;
+    -webkit-transform-origin: top;
+    transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    left: 0;
+}
+
+.mobile__menu.show {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+
+.mobile__menu button {
+    margin-left: 6vw;
+}
+
+.mobile__menu .menu__link {
+    padding: 0.8rem 6vw;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile__menu .menu__list:last-of-type {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+    width: fit-content;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+    -webkit-box-shadoe: var(--box-shadow);
+    border-radius: 5px;
+    background: #fff;
+    transform-origin: top;
+    -webkit-transform-origin: top;
+    transform: scaleY(0);
+    -webkit-transform: scaleY(0);
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+}
+
+.navbar .menu .menu__list:hover > .dropdown,
+.navbar .menu .menu__list:focus-within > .dropdown {
+    transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+}
+
+.profile__center {
+    margin-left: 1rem;
+}
+
+.profile__center .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+}
+
+.profile__center .profile__control {
+    right: 0;
+    box-shadow: var(--box-shadow);
+    background: #fff;
+    padding: 0.8rem;
+    display: none;
+}
+
+.profile__center:hover .profile__control,
+.profile__center:focus-within .profile__control {
+    display: block;
+}
+
+.profile__center button {
+    cursor: pointer;
+    border: transparent;
+    background: var(--green-color);
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    width: 100%;
+    border-radius: 3px;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile__center a {
+    font-size: 17px;
+    white-space: nowrap;
+    color: var(--dark-gray-color);
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile__control div {
+    margin-bottom: 0.5rem;
+}
+
+.profile__center a:hover,
+.profile__center a:focus-within {
+    color: var(--blue-color);
+}
+
+.toggler button {
+    padding: 0.6rem 0.7rem;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+}
+
+.toggler button:focus,
+.toggler button:focus-within,
+.toggler button:hover,
+.toggler button.beautify {
+    border-color: var(--blue-color);
+}
+
+.toggler button .fas {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.4);
+    transition: 0.2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+}
+
+.toggler button:focus .fas,
+.toggler button:focus-within .fas,
+.toggler button:hover .fas,
+.toggler button.beautify {
+    color: var(--blue-color);
+}
+
+.dropdown .menu__list {
+    padding: 0.5rem 0;
+}
+
+.dropdown .menu__list .menu__link {
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 900px) {
+    .navbar .logo h2 {
+        font-size: 25px;
+    }
+}

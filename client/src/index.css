@@ -35,7 +35,7 @@ button {
   --error-color: #ca5e79;
   --link-gray: #ADB6B9;
   --bg-color: #ffffff;
-  --box-shadow-color: rgba(0, 0, 0, 0.8);
+  --box-shadow: rgba(149, 157, 165, 0.2) 0px 1px 27px;
   --footer-gray: #F6F9FA;
 }
 

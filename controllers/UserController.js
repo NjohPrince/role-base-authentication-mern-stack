@@ -22,6 +22,8 @@ async function validatePassword(plainPassword, hashedPassword) {
 exports.signup = async (req, res, next) => {
     const { name, email, password, role } = req.body;
 
+    console.log("Hello");
+
     const user = await User.findOne({ email });
     if (user) return next(new Error(`Email already in use by another account!`));
 
@@ -32,7 +34,7 @@ exports.signup = async (req, res, next) => {
       name,
       email,
       password: hashedPass,
-      role: role || "USER_ADMIN",
+      role: role || "SUPER_ADMIN",
     });
 
     // generating access token for user
@@ -77,7 +79,7 @@ exports.login = async (req, res, next) => {
     await User.findByIdAndUpdate(user._id, { accessToken });
 
     res.status(200).json({
-      data: { fullname: user.fullname, email: user.email, role: user.role },
+      data: { name: user.name, email: user.email, role: user.role },
       accessToken,
     });
   } catch (error) {

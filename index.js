@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "development") {
 // default route - testing
 app.get("/", (req, res) => {
   res
-    .send({ message: " Based Authentication System - MERN Stack" })
+    .send({ message: "Role Based Authentication System - MERN Stack" })
     .status(200);
 });
 

@@ -6,6 +6,28 @@ const { sendMail } = require("../services/mail");
 
 const { roles } = require("../roles/roles");
 
+exports.getProfile = async (req, res, next) => {
+  try {
+    const { accessToken } = req.body;
+
+    // verifying if a user exists with given email
+    const user = await User.findOne({ accessToken });
+    if (!user) return next(new Error(`No user with email ${email} found!`));
+
+    res.status(200).json({
+      data: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      accessToken,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // signup controller
 exports.signup = async (req, res) => {
   const { name, email, password, role } = req.body;

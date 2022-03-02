@@ -84,8 +84,8 @@ const Navbar = ({ containMenuItems, adjustPadding }) => {
     axios
       .post(`${baseURL}/logout`)
       .then((response) => {
-        window.location.reload();
         dispatch(setAlert(response.data.message, "success"));
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error?.error);

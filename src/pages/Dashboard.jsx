@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
+import { ActionTypes } from "../redux/constants/ActionTypes";
 
 // styles import
 import "../assets/styles/pages/dashboard.css";
@@ -68,12 +70,37 @@ const Dashboard = () => {
   const [token, setToken] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const user = useSelector((state) => state.auth);
+  console.log("Data ", user);
+  const { loading } = user;
+
   useEffect(() => {
     axios
       .post(`${baseURL}/get-token`)
       .then((response) => {
         console.log(response.data);
         setToken(response.data);
+
+        dispatch({
+          type: ActionTypes.USER_DATA_REQUEST,
+        });
+        axios.get(`${baseURL}/user/me`, { accessToken: response.data.token })
+        .then((response) => {
+          console.log(response.data);
+          dispatch({
+            type: ActionTypes.USER_DATA_SUCCESS,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          dispatch({
+            type: ActionTypes.USER_DATA_FAIL,
+          });
+          dispatch(setAlert("An error occured. Please reload page or login."));
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        })
       })
       .catch((error) => {
         console.log(error?.error);

@@ -23,6 +23,12 @@ router.get(
 );
 
 router.get(
+  "/user/me",
+  userController.allowIfLoggedin,
+  userController.getProfile
+);
+
+router.get(
   "/users",
   userController.allowIfLoggedin,
   userController.grantAccess("readAny", "profile"),

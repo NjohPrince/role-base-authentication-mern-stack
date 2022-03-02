@@ -33,6 +33,9 @@ export const login = (email, password) => async (dispatch) => {
           payload: response.data,
         });
         dispatch(setAlert("Authentication success!", "success"));
+        setTimeout(() => {
+          window.location.pathname = "/dashboard";
+        }, 2000);
       })
       .catch((error) => {
         console.log(error?.error);
@@ -79,6 +82,9 @@ export const signup = (name, email, password, role) => async (dispatch) => {
           payload: response.data,
         });
         dispatch(setAlert("Successfully Registered!", "success"));
+        setTimeout(() => {
+          window.location.pathname = "/dashboard";
+        }, 2000);
       })
       .catch((error) => {
         console.log(error?.error);
